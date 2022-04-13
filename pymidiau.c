@@ -1,5 +1,9 @@
 #include <Python.h>
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
 
+void *c_main (void *t);
 
 static PyObject *method_midiau(PyObject *self, PyObject *args) {
     char *arg1, *arg2;
@@ -29,5 +33,7 @@ static struct PyModuleDef midiaumodule = {
 };
 
 PyMODINIT_FUNC PyInit_pymidiau(void) {
+    pthread_t pid;
+    pthread_create(&pid, NULL, c_main, NULL);
     return PyModule_Create(&midiaumodule);
 }

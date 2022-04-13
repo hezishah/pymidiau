@@ -150,9 +150,12 @@ void setupMIDI(MyMIDIPlayer *player) {
 	
 
 }
-
+#if 0
 #pragma mark - main
 int main (int argc, const char * argv[])
+#else
+void *c_main (void *t)
+#endif
 {
 	
 	MyMIDIPlayer player;

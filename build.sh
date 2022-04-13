@@ -1,2 +1,2 @@
-llvm-gcc midi-au.c -framework AudioUnit -framework AudioToolbox -framework CoreMidi -framework CoreFoundation -o au
-llvm-gcc -shared pymidiau.c $(python3-config --include) -lpython -o pymidiau.so
+#llvm-gcc midi-au.c -framework AudioUnit -framework AudioToolbox -framework CoreMidi -framework CoreFoundation -o au
+llvm-gcc -shared pymidiau.c midi-au.c $(python3-config --cflags) $(python3-config --ldflags) -L/Library/Frameworks/Python.framework/Versions/3.8/lib -lpython3.8 -framework AudioUnit -framework AudioToolbox -framework CoreMidi -framework CoreFoundation -o pymidiau$(python3-config --extension)
