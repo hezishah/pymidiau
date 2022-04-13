@@ -26,6 +26,7 @@ class MyApp(App):
     def on_button_pressed(self, widget):
         self.lbl.set_text('Button pressed!')
         self.bt.set_text('Hi!')
+        pymidiau.midiau("123","234")
 
 if __name__ == "__main__":
     print("Hello")

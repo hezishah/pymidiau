@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 void *c_main (void *t);
-
+void midiau_list_graph();
 static PyObject *method_midiau(PyObject *self, PyObject *args) {
     char *arg1, *arg2;
     int bytes_copied = -1;
@@ -15,6 +15,7 @@ static PyObject *method_midiau(PyObject *self, PyObject *args) {
     }
 
     printf("Hello %s %s\n", arg1,arg2);
+    midiau_list_graph();
     return PyLong_FromLong(bytes_copied);
 }
 

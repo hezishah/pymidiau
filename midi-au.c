@@ -150,6 +150,45 @@ void setupMIDI(MyMIDIPlayer *player) {
 	
 
 }
+
+static MyMIDIPlayer player;
+
+
+void midiau_list_graph()
+{
+	AUNode outSourceNode;
+	UInt32 outSourceOutputNumber;
+	AUNode outDestNode; 
+	UInt32 outDestInputNumber;
+	CFStringRef str = NULL;
+	if(kAudioServicesNoError == AUGraphGetConnectionInfo(player.graph, 0, &outSourceNode, &outSourceOutputNumber, &outDestNode, &outDestInputNumber))
+	{
+		AudioUnit au;
+		printf("outSourceOutputNumber = %d outDestInputNumber = %d\n", outSourceOutputNumber,outDestInputNumber);
+		AUGraphNodeInfo(player.graph, outSourceNode, NULL, &au);
+#if 0
+		CFIndex len = CFStringGetLength(str);
+		AudioComponentCopyName( outSourceNode, &str);
+		if(len)
+		{
+			char *fullPath = (char *)malloc( len + 1 );
+			CFStringGetCString(str, fullPath, len, kCFStringEncodingUTF8);
+			printf("name = %s len = %lu\n",fullPath, (long)len);
+			free(fullPath);
+		}
+		AudioComponentCopyName(outDestNode, &str);
+		len = CFStringGetLength(str);
+		if(len)
+		{
+			char *fullPath = (char *)malloc( len + 1 );
+			CFStringGetCString(str, fullPath, len, kCFStringEncodingUTF8);
+			printf("name = %s len = %lu\n",fullPath, (long)len);
+			free(fullPath);
+		}
+#endif
+	}
+}
+
 #if 0
 #pragma mark - main
 int main (int argc, const char * argv[])
@@ -157,8 +196,6 @@ int main (int argc, const char * argv[])
 void *c_main (void *t)
 #endif
 {
-	
-	MyMIDIPlayer player;
 	
 	setupAUGraph(&player);
 	setupMIDI(&player);
